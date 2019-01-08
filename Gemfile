@@ -20,10 +20,8 @@ gem 'optimist'
 gem 'webpacker'
 gem 'react-rails'
 
-
 # => Core Application Libraries
 gem 'rspotify'
-
 
 # => Performance
 gem 'bootsnap', '>= 1.1.0', require: false
