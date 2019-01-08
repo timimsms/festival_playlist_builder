@@ -7,5 +7,10 @@ class Util
     def lineup_data(filename:, fixtures_path: Fixtures.fests)
       YAML.load_file("#{fixtures_path}/#{filename}")
     end
+
+    # Temporary method while utilizing the console to work with RSpotify.
+    def authorize_spotify!
+      RSpotify.authenticate(*Settings.spotify_credentials)
+    end
   end
 end
