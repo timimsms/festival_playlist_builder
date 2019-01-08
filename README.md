@@ -32,7 +32,7 @@ This provides me with a good set of playlists both before and after the music fe
 ### Project Milestones
 
 - [ ] User accounts and Spotify OAuth to allow for the resulting playlist to be added to the user's account.
-- [ ] Basic ability to utilize Ruby and the RSpotify Gem to aid in the creation of festival playlists.
+- [ ] Basic ability to utilize Ruby and the [RSpotify](https://github.com/guilhermesad/rspotify) Gem to aid in the creation of festival playlists.
 - [ ] More complex user experience and interface to allow for selection of artists and songs.
 - [ ] Basic interface to allow "building" a playlist with user decision-making throughout the process.
 - [ ] Advanced interface to allow for gradual listening to lead to new discoveries and suggestions.
