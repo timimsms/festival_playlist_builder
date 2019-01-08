@@ -168,6 +168,7 @@ Style/StringLiterals:
     - 'Gemfile'
     - 'config.ru'
     - 'Rakefile'
+    - 'spec/**/*'
 
 # Detect hard tabs, no hard tabs.
 Layout/Tab:
