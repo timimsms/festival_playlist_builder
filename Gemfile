@@ -22,6 +22,11 @@ gem 'react-rails'
 # => Core Application Libraries
 gem 'rspotify'
 
+# Authorization
+gem 'devise'
+# gem 'omniauth-oauth2' #, '~> 1.3.1' # NOTE: May fix an issue: https://github.com/icoretech/omniauth-spotify/issues/10#issuecomment-223718565
+gem 'omniauth-spotify'
+
 # => Performance
 gem 'bootsnap', '>= 1.1.0', require: false
 
