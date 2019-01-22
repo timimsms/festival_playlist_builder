@@ -9,31 +9,31 @@ class FestivalPlaylistSandbox
     Util.authorize_spotify!
 
     # Currently a proof-of-concept; just spits everything out into a log file.
-    platlist_steam = File.new("#{Rails.root}/log/#{lineup_file}.txt", 'w')
+    platlist_stream = File.new("#{Rails.root}/log/#{lineup_file}.txt", "w")
 
     Util.lineup_data(filename: lineup_file).values.flatten.each do |artist_name|
       artist = RSpotify::Artist.search(artist_name).first
-      platlist_steam << "~> #{artist_name}\r\n"
+      platlist_stream << "~> #{artist_name}\r\n"
 
       unless artist.nil?
         tracks = artist.top_tracks(:US)
 
         if tracks.empty?
-          platlist_steam << " * (no tracks on Spotify)\r\n"
+          platlist_stream << " * (no tracks on Spotify)\r\n"
         else
           tracks.each do |top_track|
-            platlist_steam << " - #{top_track.name}\r\n"
+            platlist_stream << " - #{top_track.name}\r\n"
           end
         end
       else
-        platlist_steam << "> > > NOT FOUND < < <"
+        platlist_stream << "> > > NOT FOUND < < <"
       end
 
-      platlist_steam << "\r\n\r\n"
+      platlist_stream << "\r\n\r\n"
 
       puts "... finished #{artist_name}!"
     end
 
-    platlist_steam.close
+    platlist_stream.close
   end
 end
