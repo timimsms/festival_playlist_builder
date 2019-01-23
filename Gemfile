@@ -24,7 +24,7 @@ gem 'rspotify'
 
 # Authorization
 gem 'devise'
-# gem 'omniauth-oauth2' #, '~> 1.3.1' # NOTE: May fix an issue: https://github.com/icoretech/omniauth-spotify/issues/10#issuecomment-223718565
+gem 'omniauth-oauth2'
 gem 'omniauth-spotify'
 
 # => Performance
