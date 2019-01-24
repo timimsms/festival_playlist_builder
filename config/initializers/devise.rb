@@ -262,7 +262,7 @@ Devise.setup do |config|
                   Settings.spotify_client_id,
                   Settings.spotify_client_secret,
                   scope: "user-read-email playlist-modify-public",
-                  callback_url: "#{Settings.root_url}/omniauth/spotify/callback/"
+                  callback_url: "#{Settings.root_url}/users/auth/spotify/callback/"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
