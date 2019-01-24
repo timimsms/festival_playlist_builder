@@ -88,8 +88,7 @@ Style/HashSyntax:
 # Method definitions after `private` or `protected` isolated calls need one
 # extra level of indentation.
 Layout/IndentationConsistency:
-  Enabled: true
-  EnforcedStyle: rails
+  Enabled: false
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:

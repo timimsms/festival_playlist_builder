@@ -16,7 +16,11 @@ class User < ApplicationRecord
       user.expires_at = auth.credentials.expires_at
       user.refresh_token = auth.credentials.refresh_token
 
-      raise "!" # <-- TODO: store provider_data (JSONb)
+      user.provider_data = auth.extra.raw_info.to_hash
     end
+  end
+
+  def name
+    provider_data&.fetch("display_name", nil)
   end
 end
