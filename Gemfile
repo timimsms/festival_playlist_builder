@@ -26,6 +26,7 @@ gem 'rspotify'
 gem 'devise'
 gem 'omniauth-oauth2'
 gem 'omniauth-spotify'
+gem 'mailgun_rails'
 
 # => Performance
 gem 'bootsnap', '>= 1.1.0', require: false
