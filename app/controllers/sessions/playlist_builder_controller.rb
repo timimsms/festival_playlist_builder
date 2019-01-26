@@ -1,8 +1,10 @@
 module Sessions
   class PlaylistBuilderController < BaseController
+    helper_method :welcome_message
+
     # GET /sessions/playlists_builder/new
     def new
-      render plain: welcome_message
+      # render new.html.erb
     end
 
     private
