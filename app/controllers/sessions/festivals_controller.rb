@@ -2,7 +2,7 @@ module Sessions
   class FestivalsController < BaseController
     # GET /sessions/festivals
     def index
-      render plain: "test"
+      render json: Festival.build_all.to_json
     end
 
     # # GET /sessions/festivals/:name

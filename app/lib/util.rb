@@ -8,6 +8,11 @@ class Util
       YAML.load_file("#{fixtures_path}/#{filename}")
     end
 
+
+    def lineup_files(fixtures_path: Fixtures.fests)
+      Dir.entries(fixtures_path).select { |f| !File.directory? f }
+    end
+
     # Temporary method while utilizing the console to work with RSpotify.
     def authorize_spotify!
       RSpotify.authenticate(*Settings.spotify_credentials)
