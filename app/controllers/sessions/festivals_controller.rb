@@ -8,7 +8,7 @@ module Sessions
     # # GET /sessions/festivals/:name
     # NOTE: Evaluate primary key if we're building on the fly. - TW
     def show
-      render plain: "test"
+      render json: Festival.build_for(params[:id]).to_json
     end
   end
 end

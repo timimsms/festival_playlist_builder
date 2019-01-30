@@ -1,6 +1,6 @@
 # NOTE: Currently not an AR-backed model.
 class Festival
-  attr_accessor :id, :name, :year, :lineup
+  attr_accessor :id, :name, :year, :lineup, :filename
 
   def initialize(yaml_data)
     @name = yaml_data.fetch(:name)
@@ -8,6 +8,7 @@ class Festival
 
     @year = yaml_data.fetch(:year)
     @lineup = yaml_data.fetch(:lineup)
+    @filename = yaml_data.fetch(:filename)
   end
 
   # Builds an array of all data in lib/fixtures/fests/**.yml
@@ -16,8 +17,8 @@ class Festival
       id: self.id,
       name: self.name,
       year: self.year,
-      filename: nil,
-      lineup: nil
+      lineup: self.lineup,
+      filename: self.filename,
     }
   end
 
@@ -28,13 +29,13 @@ class Festival
   end
 
   def self.build_for(fest_file)
-    fest_file_path = "#{Rails.root}/lib/fixtures/fests/#{fest_file}"
+    fest_file_path = "#{Rails.root}/lib/fixtures/fests/#{fest_file}.yml"
     fest_yaml_data = YAML.load_file(fest_file_path)
     Festival.new(
       name: fest_yaml_data.fetch("name"),
       year: fest_yaml_data.fetch("year"),
       lineup: fest_yaml_data.fetch("lineup"),
-      filename: fest_file
+      filename: "#{fest_file}"
     )
   end
 end
