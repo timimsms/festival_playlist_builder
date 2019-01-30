@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Button from "@material-ui/core/Button";
+
 const PlaylistBuilder = ({ name, updateName }) => (
   <div>
     <h3>
@@ -18,6 +20,9 @@ const PlaylistBuilder = ({ name, updateName }) => (
         onChange={(e) => updateName(e.target.value)}
       />
     </form>
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
   </div>
 );
 
