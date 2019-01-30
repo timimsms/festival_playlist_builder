@@ -4,13 +4,7 @@ module Sessions
 
     # GET /sessions/playlists_builder/new
     def new
-      # render new.html.erb
-    end
-
-    private
-
-    def welcome_message
-      "Hello, #{current_user.name}. Let's build your first playlist!"
+      @playlist_builder_props = { name: current_user.name }
     end
   end
 end

@@ -17,7 +17,8 @@ gem 'mini_racer', platforms: :ruby
 gem 'turbolinks', '~> 5'
 gem 'optimist'
 gem 'webpacker'
-gem 'react-rails'
+gem 'react_on_rails', '11.1.4' # Use the exact gem version to match npm version
+# gem 'redux_rails' # TODO: See if this is worthwhile to better manage code for dispatchers, etc.,.
 
 # => Core Application Libraries
 gem 'rspotify'

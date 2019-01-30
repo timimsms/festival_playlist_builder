@@ -1,0 +1,8 @@
+# Directories
+node_modules/**/*.js
+public/**/*.js
+tmp/**/*.js
+vendor/**/*.js
+
+# Specific Files
+app/assets/javascripts/cable.js
