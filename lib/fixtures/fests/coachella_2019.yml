@@ -2,7 +2,6 @@
 # See: https://www.coachella.com/lineup/
 #
 # TODO: Move lineup data to it's own dedicated API.
-id: "coachella_2019"
 name: "Coachella"
 year: "2019"
 lineup:
