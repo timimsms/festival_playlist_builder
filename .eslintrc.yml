@@ -3,3 +3,13 @@ rules:
   arrow-parens:
     - "error"
     - "always"
+  # Temporarily disable the following while building the MVP.
+  react/destructuring-assignment:
+    - false
+    - "always"
+  react/prop-types:
+    - false
+    - "always"
+  react/no-array-index-key:
+    - false
+    - "always"

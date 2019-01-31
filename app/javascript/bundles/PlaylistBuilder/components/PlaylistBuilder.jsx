@@ -1,34 +1,78 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+/*
+ * TODO: Currently this file is only scanned by eslint when running:
+ *     ~> eslint . --ext=.js --ext=.jsx
+ *
+ * => Investigate how to add a configuration to .eslintrc.yml. - TW 01/30/2019
+ */
+import React, { Component } from 'react';
 
-import Button from "@material-ui/core/Button";
+import axios from 'axios';
 
-const PlaylistBuilder = ({ name, updateName }) => (
-  <div>
-    <h3>
-      Hello, {name}!
-    </h3>
-    <hr />
-    <form >
-      <label htmlFor="name">
-        Say hello to:
-      </label>
-      <input
-        id="name"
-        type="text"
-        value={name}
-        onChange={(e) => updateName(e.target.value)}
-      />
-    </form>
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  </div>
-);
+import FestivalCardGrid from './FestivalCardGrid';
+import ArtistSelection from './ArtistSelection';
 
-PlaylistBuilder.propTypes = {
-  name: PropTypes.string.isRequired,
-  updateName: PropTypes.func.isRequired,
-};
+class PlaylistBuilder extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      festivals: [],
+      currentlySelectedFestival: null,
+    };
+  }
+
+  componentDidMount() {
+    const builder = this;
+    axios.get('http://localhost:3000/sessions/festivals')
+      .then((response) => {
+        builder.setState({
+          festivals: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  getFestivals() {
+    return this.state.festivals;
+  }
+
+  setCurrentlySelectedPlaylist(key) {
+    this.setState({
+      currentlySelectedFestival: key,
+    });
+  }
+
+  // TODO: Clean-up this method a bit. - TW
+  currentlySelectedFestivalIndex() {
+    let result;
+    const currSelected = this.state.currentlySelectedFestival;
+
+    this.getFestivals().forEach((festival, index) => {
+      if (festival.filename === currSelected) {
+        result = index;
+      }
+    });
+
+    return result;
+  }
+
+  currentPlaylistJson() {
+    return this.state.festivals[this.currentlySelectedFestivalIndex()];
+  }
+
+  render() {
+    if (this.state.currentlySelectedFestival === null) {
+      return (
+        <div>
+          <FestivalCardGrid builder={this} />
+        </div>
+      );
+    }
+    return (
+      <div>
+        <ArtistSelection builder={this} />
+      </div>
+    );
+  }
+}
 
 export default PlaylistBuilder;
