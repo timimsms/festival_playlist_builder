@@ -12,10 +12,10 @@
     "react-on-rails": "11.2.2",
     "react-redux": "^6.0.0",
     "react_ujs": "^2.4.4",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "axios": "^0.18.0"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
