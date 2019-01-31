@@ -22,7 +22,7 @@ const styles = theme => ({
     maxWidth: 400,
   },
   media: {
-    height: 0,
+    height: 300,
     paddingTop: '56.25%', // 16:9
   },
   actions: {
@@ -56,6 +56,7 @@ class FestivalCard extends React.Component {
       year: props.year,
       short_description: props.name + ' - ' + props.year,
       description: null,
+      image: props.image,
       lineup: props.lineup,
       expanded: false,
     };
@@ -83,9 +84,8 @@ class FestivalCard extends React.Component {
         />
         <CardMedia
           className={classes.media}
-          image="https://pbs.twimg.com/media/Dv9asadUcAAxhIP.jpg:large"
+          image={this.state.image}
           title={this.state.short_description}
-          style={{height: 300}}
         />
         {hasDescriptionContent ? (
         <CardContent>

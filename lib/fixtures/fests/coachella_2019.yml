@@ -4,6 +4,7 @@
 # TODO: Move lineup data to it's own dedicated API.
 name: "Coachella"
 year: "2019"
+image: "https://pbs.twimg.com/media/Dv9asadUcAAxhIP.jpg:large"
 lineup:
   friday:
     - "Childish Gambino"
