@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import axios from 'axios';
-import FestivalCard from './FestivalCard';
 
+import FestivalCardGrid from './FestivalCardGrid';
 
 class PlaylistBuilder extends React.Component {
   constructor(props) {
@@ -19,6 +19,10 @@ class PlaylistBuilder extends React.Component {
       festivals: [],
       currently_selected_festival: null,
     };
+  }
+
+  getFestivals() {
+    return this.state.festivals;
   }
 
   componentDidMount() {
@@ -35,15 +39,7 @@ class PlaylistBuilder extends React.Component {
   render() {
     return (
       <div>
-        {this.state.festivals.map((festival) => (
-          <FestivalCard
-            key={festival.filename}
-            name={festival.name}
-            year={festival.year}
-            image={festival.image}
-            lineup={festival.lineup}
-          />
-        ))}
+        <FestivalCardGrid builder={this} />
       </div>
     );
   }

@@ -17,12 +17,12 @@ import red from '@material-ui/core/colors/red';
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
-    maxWidth: 400,
+    maxWidth: '100%',
   },
   media: {
     height: 300,
@@ -50,26 +50,26 @@ class FestivalCard extends React.Component {
       name: props.name,
       avatar: props.name.charAt(0),
       year: props.year,
-      short_description: props.name + ' - ' + props.year,
+      short_description: `${props.name} - ${props.year}`,
       description: null,
       image: props.image,
-      lineup: props.lineup
+      lineup: props.lineup,
     };
   }
 
   render() {
     const { classes } = this.props;
 
-    var hasDescriptionContent = this.state.description !== null;
+    const hasDescriptionContent = this.state.description !== null;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          avatar={
+          avatar={(
             <Avatar aria-label="Recipe" className={classes.avatar}>
               {this.state.avatar}
             </Avatar>
-          }
+)}
           title={this.state.name}
           subheader={this.state.year}
         />
@@ -79,11 +79,11 @@ class FestivalCard extends React.Component {
           title={this.state.short_description}
         />
         {hasDescriptionContent ? (
-        <CardContent>
-          <Typography component="p">
-            {this.state.description}
-          </Typography>
-        </CardContent>
+          <CardContent>
+            <Typography component="p">
+              {this.state.description}
+            </Typography>
+          </CardContent>
         ) : (null) }
         <CardActions className={classes.actions} disableActionSpacing>
           <Button
@@ -92,7 +92,8 @@ class FestivalCard extends React.Component {
             className={classNames(classes.margin, classes.bootstrapRoot)}
             aria-label="Start"
           >
-            <PlayArrowIcon/>&nbsp;
+            <PlayArrowIcon />
+&nbsp;
             Build Playlist
           </Button>
         </CardActions>
