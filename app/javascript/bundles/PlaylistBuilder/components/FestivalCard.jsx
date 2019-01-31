@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,11 +12,13 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import red from '@material-ui/core/colors/red';
+
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+
 
 const styles = theme => ({
   card: {
@@ -27,17 +30,10 @@ const styles = theme => ({
   },
   actions: {
     display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+  // TODO: Make this configurable
   avatar: {
     backgroundColor: red[500],
   },
@@ -90,21 +86,15 @@ class FestivalCard extends React.Component {
         </CardContent>
         ) : (null) }
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
+          <Button
+            variant="contained"
+            color="primary"
+            className={classNames(classes.margin, classes.bootstrapRoot)}
+            aria-label="Start"
           >
-          </IconButton>
+            <PlayArrowIcon/>&nbsp;
+            Build Playlist
+          </Button>
         </CardActions>
       </Card>
     );
