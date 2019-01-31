@@ -1,26 +1,47 @@
+/*
+ * TODO: Currently this file is only scanned by eslint when running:
+ *     ~> eslint . --ext=.js --ext=.jsx
+ *
+ * => Investigate how to add a configuration to .eslintrc.yml. - TW 01/30/2019
+ */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Button from "@material-ui/core/Button";
 import axios from 'axios';
+import FestivalCard from './FestivalCard';
 
-class PlaylistBuilder extends Component {
-  componentDidMount() {
-    axios.get('http://localhost:3000/sessions/festivals')
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => console.log(error))
+
+class PlaylistBuilder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      festivals: [],
+      currently_selected_festival: null,
+    };
   }
 
-  // TODO: Add component did mount method.
-  render () {
+  componentDidMount() {
+    const builder = this;
+    axios.get('http://localhost:3000/sessions/festivals')
+      .then((response) => {
+        builder.setState({
+          festivals: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  render() {
     return (
       <div>
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
+        {this.state.festivals.map((festival) => (
+          <FestivalCard
+            key={festival.filename}
+            name={festival.name}
+            year={festival.year}
+          />
+        ))}
       </div>
     );
   }
