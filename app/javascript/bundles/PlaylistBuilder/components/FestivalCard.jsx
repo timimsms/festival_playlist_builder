@@ -46,7 +46,7 @@ class FestivalCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: props.key,
+      filename: props.filename,
       name: props.name,
       avatar: props.name.charAt(0),
       year: props.year,
@@ -54,7 +54,12 @@ class FestivalCard extends React.Component {
       description: null,
       image: props.image,
       lineup: props.lineup,
+      builder: props.builder,
     };
+  }
+
+  setAsCurrentPlaylist() {
+    this.state.builder.setCurrentlySelectedPlaylist(this.state.filename);
   }
 
   render() {
@@ -91,9 +96,9 @@ class FestivalCard extends React.Component {
             color="primary"
             className={classNames(classes.margin, classes.bootstrapRoot)}
             aria-label="Start"
+            onClick={() => { this.setAsCurrentPlaylist(); }}
           >
-            <PlayArrowIcon />
-&nbsp;
+            <PlayArrowIcon />&nbsp;
             Build Playlist
           </Button>
         </CardActions>

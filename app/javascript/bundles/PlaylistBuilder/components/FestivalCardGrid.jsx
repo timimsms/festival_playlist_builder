@@ -31,18 +31,21 @@ class FestivalCardGrid extends React.Component {
   }
 
   render() {
+    const builder = this.state.builder;
     const festivals = this.getFestivals();
+
     return (
       <div>
         <Grid container spacing={24}>
           {festivals.map((festival, i) => (
             <Grid item lg={4} md={6} xs={12} key={"festival-" + i}>
               <FestivalCard
-                key={festival.filename}
+                filename={festival.filename}
                 name={festival.name}
                 year={festival.year}
                 image={festival.image}
                 lineup={festival.lineup}
+                builder={builder}
               />
             </Grid>
           ))}

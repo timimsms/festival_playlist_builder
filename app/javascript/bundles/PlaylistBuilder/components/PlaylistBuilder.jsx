@@ -11,18 +11,30 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import FestivalCardGrid from './FestivalCardGrid';
+import ArtistSelection from './ArtistSelection';
 
 class PlaylistBuilder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       festivals: [],
-      currently_selected_festival: null,
+      currentlySelectedFestival: null,
     };
   }
 
   getFestivals() {
     return this.state.festivals;
+  }
+
+  setCurrentlySelectedPlaylist(key) {
+    console.log(key);
+    this.setState({
+      currentlySelectedFestival: key,
+    });
+  }
+
+  currentPlaylist() {
+    return this.state.currentlySelectedFestival;
   }
 
   componentDidMount() {
@@ -37,11 +49,17 @@ class PlaylistBuilder extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <FestivalCardGrid builder={this} />
-      </div>
-    );
+    if (this.currentPlaylist() === null) {
+      return (
+        <div>
+          <FestivalCardGrid builder={this} />
+        </div>
+      );
+    } else {
+      return (
+        <ArtistSelection builder={this} />
+      );
+    }
   }
 }
 
