@@ -98,7 +98,8 @@ class FestivalCard extends React.Component {
             aria-label="Start"
             onClick={() => { this.setAsCurrentPlaylist(); }}
           >
-            <PlayArrowIcon />&nbsp;
+            <PlayArrowIcon />
+            &nbsp;
             Build Playlist
           </Button>
         </CardActions>

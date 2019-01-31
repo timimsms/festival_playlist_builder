@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ArtistSelection extends React.Component {
   constructor(props) {
     super(props);
-    self.state = {
+    this.state = {
       builder: props.builder,
     };
   }
 
   getCurrentPlaylist() {
-    return this.state.builder.currentPlaylist();
+    console.log(this.state.builder.currentPlaylistJson());
+    return this.state.builder.currentPlaylistJson();
   }
 
   getCurrentPlaylistName() {
@@ -20,8 +22,10 @@ class ArtistSelection extends React.Component {
     return (
       <div>
         TODO: NEXT STEP - ADD ARTIST SELECTOR
-
-        Current playlist: {this.getCurrentPlaylistName()}
+        <br />
+        Current playlist:
+        &nbsp;
+        {this.getCurrentPlaylistName()}
       </div>
     );
   }

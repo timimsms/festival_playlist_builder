@@ -27,14 +27,27 @@ class PlaylistBuilder extends React.Component {
   }
 
   setCurrentlySelectedPlaylist(key) {
-    console.log(key);
     this.setState({
       currentlySelectedFestival: key,
     });
   }
 
-  currentPlaylist() {
-    return this.state.currentlySelectedFestival;
+  // TODO: Clean-up this method a bit. - TW
+  currentlySelectedFestivalIndex() {
+    var result;
+    var currSelected = this.state.currentlySelectedFestival;
+
+    this.getFestivals().forEach(function(festival, index) {
+      if(festival.filename === currSelected){
+        result = index;
+      }
+    });
+
+    return result;
+  }
+
+  currentPlaylistJson() {
+    return this.state.festivals[this.currentlySelectedFestivalIndex()];
   }
 
   componentDidMount() {
@@ -49,17 +62,18 @@ class PlaylistBuilder extends React.Component {
   }
 
   render() {
-    if (this.currentPlaylist() === null) {
+    if (this.state.currentlySelectedFestival === null) {
       return (
         <div>
           <FestivalCardGrid builder={this} />
         </div>
       );
-    } else {
-      return (
-        <ArtistSelection builder={this} />
-      );
     }
+    return (
+      <div>
+        <ArtistSelection builder={this} />
+      </div>
+    );
   }
 }
 
