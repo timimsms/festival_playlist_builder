@@ -1,25 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import red from '@material-ui/core/colors/red';
 
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import red from '@material-ui/core/colors/red';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
-
+// eslint-disable-next-line no-unused-vars
 const styles = (theme) => ({
   card: {
     maxWidth: '100%',
@@ -53,7 +49,6 @@ class FestivalCard extends React.Component {
       short_description: `${props.name} - ${props.year}`,
       description: null,
       image: props.image,
-      lineup: props.lineup,
       builder: props.builder,
     };
   }
@@ -74,7 +69,7 @@ class FestivalCard extends React.Component {
             <Avatar aria-label="Recipe" className={classes.avatar}>
               {this.state.avatar}
             </Avatar>
-)}
+          )}
           title={this.state.name}
           subheader={this.state.year}
         />
@@ -107,9 +102,5 @@ class FestivalCard extends React.Component {
     );
   }
 }
-
-FestivalCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(FestivalCard);

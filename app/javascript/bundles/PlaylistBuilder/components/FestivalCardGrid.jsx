@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+
 import Grid from '@material-ui/core/Grid';
 
 import FestivalCard from './FestivalCard';
@@ -31,7 +30,7 @@ class FestivalCardGrid extends React.Component {
   }
 
   render() {
-    const builder = this.state.builder;
+    const localBuilder = this.state.builder;
     const festivals = this.getFestivals();
 
     return (
@@ -44,8 +43,7 @@ class FestivalCardGrid extends React.Component {
                 name={festival.name}
                 year={festival.year}
                 image={festival.image}
-                lineup={festival.lineup}
-                builder={builder}
+                builder={localBuilder}
               />
             </Grid>
           ))}
@@ -54,10 +52,5 @@ class FestivalCardGrid extends React.Component {
     );
   }
 }
-
-FestivalCardGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-  builder: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(FestivalCardGrid);

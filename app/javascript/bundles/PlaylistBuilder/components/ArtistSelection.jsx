@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-class ArtistSelection extends React.Component {
+class ArtistSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +9,6 @@ class ArtistSelection extends React.Component {
   }
 
   getCurrentPlaylist() {
-    console.log(this.state.builder.currentPlaylistJson());
     return this.state.builder.currentPlaylistJson();
   }
 

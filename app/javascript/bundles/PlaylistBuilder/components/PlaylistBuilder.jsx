@@ -4,22 +4,31 @@
  *
  * => Investigate how to add a configuration to .eslintrc.yml. - TW 01/30/2019
  */
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import axios from 'axios';
 
 import FestivalCardGrid from './FestivalCardGrid';
 import ArtistSelection from './ArtistSelection';
 
-class PlaylistBuilder extends React.Component {
+class PlaylistBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       festivals: [],
       currentlySelectedFestival: null,
     };
+  }
+
+  componentDidMount() {
+    const builder = this;
+    axios.get('http://localhost:3000/sessions/festivals')
+      .then((response) => {
+        builder.setState({
+          festivals: response.data,
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
   getFestivals() {
@@ -34,11 +43,11 @@ class PlaylistBuilder extends React.Component {
 
   // TODO: Clean-up this method a bit. - TW
   currentlySelectedFestivalIndex() {
-    var result;
-    var currSelected = this.state.currentlySelectedFestival;
+    let result;
+    const currSelected = this.state.currentlySelectedFestival;
 
-    this.getFestivals().forEach(function(festival, index) {
-      if(festival.filename === currSelected){
+    this.getFestivals().forEach((festival, index) => {
+      if (festival.filename === currSelected) {
         result = index;
       }
     });
@@ -48,17 +57,6 @@ class PlaylistBuilder extends React.Component {
 
   currentPlaylistJson() {
     return this.state.festivals[this.currentlySelectedFestivalIndex()];
-  }
-
-  componentDidMount() {
-    const builder = this;
-    axios.get('http://localhost:3000/sessions/festivals')
-      .then((response) => {
-        builder.setState({
-          festivals: response.data,
-        });
-      })
-      .catch((error) => console.log(error));
   }
 
   render() {
