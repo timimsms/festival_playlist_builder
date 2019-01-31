@@ -52,7 +52,11 @@ class FestivalCard extends React.Component {
     this.state = {
       key: props.key,
       name: props.name,
+      avatar: props.name.charAt(0),
       year: props.year,
+      short_description: props.name + ' - ' + props.year,
+      description: null,
+      lineup: props.lineup,
       expanded: false,
     };
   }
@@ -64,33 +68,32 @@ class FestivalCard extends React.Component {
   render() {
     const { classes } = this.props;
 
+    var hasDescriptionContent = this.state.description !== null;
+
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              {this.state.name.charAt(0)}
+              {this.state.avatar}
             </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
           }
           title={this.state.name}
           subheader={this.state.year}
         />
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/paella.jpg"
-          title="Paella dish"
+          image="https://pbs.twimg.com/media/Dv9asadUcAAxhIP.jpg:large"
+          title={this.state.short_description}
+          style={{height: 300}}
         />
+        {hasDescriptionContent ? (
         <CardContent>
           <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            {this.state.description}
           </Typography>
         </CardContent>
+        ) : (null) }
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />

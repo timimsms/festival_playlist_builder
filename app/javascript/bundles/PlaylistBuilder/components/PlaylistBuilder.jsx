@@ -40,6 +40,7 @@ class PlaylistBuilder extends React.Component {
             key={festival.filename}
             name={festival.name}
             year={festival.year}
+            lineup={festival.lineup}
           />
         ))}
       </div>
