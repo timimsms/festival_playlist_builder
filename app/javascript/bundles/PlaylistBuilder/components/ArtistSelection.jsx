@@ -16,7 +16,13 @@ class ArtistSelection extends Component {
     return this.getCurrentPlaylist().name;
   }
 
+  getCurrentLineupByDay() {
+    return this.getCurrentPlaylist().lineup;
+  }
+
   render() {
+    var lineup = this.getCurrentLineupByDay();
+
     return (
       <div>
         TODO: NEXT STEP - ADD ARTIST SELECTOR
@@ -24,6 +30,15 @@ class ArtistSelection extends Component {
         Current playlist:
         &nbsp;
         {this.getCurrentPlaylistName()}
+
+        {Object.keys(lineup).map((key) => (
+          <div key={key}>
+            <h1>{key}</h1>
+            {lineup[key].map((artist) => (
+              <small key={artist}>{artist}&nbsp;</small>
+            ))}
+          </div>
+        ))}
       </div>
     );
   }
