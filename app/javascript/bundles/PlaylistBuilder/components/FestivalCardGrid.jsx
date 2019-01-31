@@ -35,8 +35,8 @@ class FestivalCardGrid extends React.Component {
     return (
       <div>
         <Grid container spacing={24}>
-          {festivals.map((festival) => (
-            <Grid item lg={4} md={6} xs={12}>
+          {festivals.map((festival, i) => (
+            <Grid item lg={4} md={6} xs={12} key={"festival-" + i}>
               <FestivalCard
                 key={festival.filename}
                 name={festival.name}
