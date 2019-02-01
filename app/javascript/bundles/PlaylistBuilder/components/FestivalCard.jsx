@@ -19,9 +19,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 const styles = (theme) => ({
   card: {
     maxWidth: '100%',
+    maxHeight: 800,
   },
   media: {
-    height: 300,
     paddingTop: '56.25%', // 16:9
   },
   actions: {
