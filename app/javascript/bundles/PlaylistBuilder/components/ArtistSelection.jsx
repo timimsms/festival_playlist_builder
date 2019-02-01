@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import ArtistSelectionAppBar from './ArtistSelectionAppBar';
+import ArtistSelectionTable from './ArtistSelectionTable';
+
 class ArtistSelection extends Component {
   constructor(props) {
     super(props);
@@ -30,10 +32,8 @@ class ArtistSelection extends Component {
                                festivalName={this.getCurrentPlaylistName()}/>
         TODO: NEXT STEP - ADD ARTIST SELECTOR
         <br />
-        Current playlist:
-        &nbsp;
-        {this.getCurrentPlaylistName()}
-
+        <ArtistSelectionTable />
+        <br />
         {Object.keys(lineup).map((key) => (
           <div key={key}>
             <h1>{key}</h1>
