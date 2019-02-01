@@ -52,11 +52,11 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Artist Name' },
+  { id: 'stage', numeric: true, disablePadding: false, label: 'Stage' },
+  { id: 'startTime', numeric: true, disablePadding: false, label: 'Start Time' },
+  { id: 'endTime', numeric: true, disablePadding: false, label: 'End Time' },
+  { id: 'monthlyListens', numeric: true, disablePadding: false, label: 'Monthly Listeners)' },
 ];
 
 class ArtistSelectionTableHead extends React.Component {
@@ -102,6 +102,9 @@ class ArtistSelectionTableHead extends React.Component {
             ),
             this,
           )}
+          <TableCell align="right">
+            Playlist Preferences
+          </TableCell>
         </TableRow>
       </TableHead>
     );
@@ -213,7 +216,7 @@ class ArtistSelectionTable extends React.Component {
       day: props.day,
       artists: props.artists,
       data: props.artists.map((artist) => (
-        createData(artist, 305, 3.7, 67, 4.3)
+        createData(artist, "N/A", "N/A", "N/A", "N/A")
       )),
       page: 0,
       rowsPerPage: 5,
@@ -313,6 +316,9 @@ class ArtistSelectionTable extends React.Component {
                       <TableCell align="right">{n.fat}</TableCell>
                       <TableCell align="right">{n.carbs}</TableCell>
                       <TableCell align="right">{n.protein}</TableCell>
+                      <TableCell align="right">
+                        prefs
+                      </TableCell>
                     </TableRow>
                   );
                 })}
