@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 
+import ArtistSelectionAppBar from './ArtistSelectionAppBar';
+import ArtistSelectionTable from './ArtistSelectionTable';
+
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map((word) => (word.charAt(0).toUpperCase() + word.slice(1))).join(' ');
+}
+
 class ArtistSelection extends Component {
   constructor(props) {
     super(props);
@@ -16,14 +23,32 @@ class ArtistSelection extends Component {
     return this.getCurrentPlaylist().name;
   }
 
+  getCurrentLineupByDay() {
+    return this.getCurrentPlaylist().lineup;
+  }
+
+  clearPlaylist() {
+    this.state.builder.clearCurrentPlaylist();
+  }
+
+  submitBuildRequest() {
+    this.state.builder.submitBuildPlaylistRequest();
+  }
+
   render() {
+    const lineup = this.getCurrentLineupByDay();
+
     return (
       <div>
-        TODO: NEXT STEP - ADD ARTIST SELECTOR
-        <br />
-        Current playlist:
-        &nbsp;
-        {this.getCurrentPlaylistName()}
+        <ArtistSelectionAppBar
+          userName={this.state.builder.getUserName()}
+          festivalName={this.getCurrentPlaylistName()}
+          backButtonAction={() => { this.clearPlaylist(); }}
+          createPlaylistAction={() => { this.submitBuildRequest(); }}
+        />
+        {Object.keys(lineup).map((key) => (
+          <ArtistSelectionTable key={key} day={titleCase(key)} artists={lineup[key]} />
+        ))}
       </div>
     );
   }

@@ -17,6 +17,7 @@ class PlaylistBuilder extends Component {
     this.state = {
       festivals: [],
       currentlySelectedFestival: null,
+      userName: props.name,
     };
   }
 
@@ -31,6 +32,10 @@ class PlaylistBuilder extends Component {
       .catch((error) => console.log(error));
   }
 
+  getUserName() {
+    return this.state.userName;
+  }
+
   getFestivals() {
     return this.state.festivals;
   }
@@ -39,6 +44,18 @@ class PlaylistBuilder extends Component {
     this.setState({
       currentlySelectedFestival: key,
     });
+  }
+
+  clearCurrentPlaylist() {
+    this.setState({
+      currentlySelectedFestival: null,
+    });
+  }
+
+  // TODO: This should post a request to a controller to build the playlist
+  //       for the current user given the selected artist preferences. - TW
+  submitBuildPlaylistRequest() {
+    console.log('test');
   }
 
   // TODO: Clean-up this method a bit. - TW
