@@ -26,11 +26,14 @@ class ArtistSelectionSlider extends React.Component {
     super(props);
     this.state = {
       props: props,
-      value: 1,
+      value: props.value,
+      sliderAction: props.updateRow,
     };
   }
 
+  // TODO: Shouldn't need to do both; but setState is needed to trigger redraw.
   handleChange = (event, value) => {
+    this.state.sliderAction(value);
     this.setState({ value });
   };
 

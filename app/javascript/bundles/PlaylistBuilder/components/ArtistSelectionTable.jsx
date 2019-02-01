@@ -35,9 +35,9 @@ const styles = (theme) => ({
 });
 
 let id = 0;
-function createData(name) {
+function createData(name, value) {
   id += 1;
-  return { id, name };
+  return { id, name, value };
 }
 
 class ArtistSelectionTable extends React.Component {
@@ -47,9 +47,24 @@ class ArtistSelectionTable extends React.Component {
       classes: props,
       day: props.day,
       data: props.artists.map((artist) => (
-        createData(artist)
+        createData(artist, 1)
       )),
     };
+  }
+
+  updateRow(rowIndex, newValue) {
+    // console.log(rowIndex);
+    // console.log(this.state.data[]);
+    // console.log(newValue);
+    const newData = this.state.data;
+    const newRowData = this.state.data[rowIndex - 1];
+
+    newRowData.value = newValue;
+
+    newData[rowIndex - 1] = newRowData;
+    this.setState({
+      data: newData,
+    });
   }
 
   render() {
@@ -77,7 +92,10 @@ class ArtistSelectionTable extends React.Component {
                   <h3>{row.name}</h3>
                 </TableCell>
                 <TableCell className={classes.sliderCell} align="right">
-                  <ArtistSelectionSlider />
+                  <ArtistSelectionSlider
+                    value={row.value}
+                    updateRow={(newValue) => { this.updateRow(row.id, newValue); }}
+                  />
                 </TableCell>
               </TableRow>
             ))}
