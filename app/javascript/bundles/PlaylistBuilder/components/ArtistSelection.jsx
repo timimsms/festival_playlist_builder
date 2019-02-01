@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import ArtistSelectionAppBar from './ArtistSelectionAppBar';
 class ArtistSelection extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,8 @@ class ArtistSelection extends Component {
 
     return (
       <div>
+        <ArtistSelectionAppBar userName={this.state.builder.getUserName()}
+                               festivalName={this.getCurrentPlaylistName()}/>
         TODO: NEXT STEP - ADD ARTIST SELECTOR
         <br />
         Current playlist:

@@ -17,6 +17,7 @@ class PlaylistBuilder extends Component {
     this.state = {
       festivals: [],
       currentlySelectedFestival: null,
+      userName: props.name,
     };
   }
 
@@ -29,6 +30,10 @@ class PlaylistBuilder extends Component {
         });
       })
       .catch((error) => console.log(error));
+  }
+
+  getUserName() {
+    return this.state.userName;
   }
 
   getFestivals() {
