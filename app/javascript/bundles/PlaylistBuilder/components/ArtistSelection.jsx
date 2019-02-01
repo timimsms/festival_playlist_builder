@@ -27,6 +27,14 @@ class ArtistSelection extends Component {
     return this.getCurrentPlaylist().lineup;
   }
 
+  clearPlaylist() {
+    this.state.builder.clearCurrentPlaylist();
+  }
+
+  submitBuildRequest() {
+    this.state.builder.submitBuildPlaylistRequest();
+  }
+
   render() {
     const lineup = this.getCurrentLineupByDay();
 
@@ -35,6 +43,8 @@ class ArtistSelection extends Component {
         <ArtistSelectionAppBar
           userName={this.state.builder.getUserName()}
           festivalName={this.getCurrentPlaylistName()}
+          backButtonAction={() => { this.clearPlaylist(); }}
+          createPlaylistAction={() => { this.submitBuildRequest(); }}
         />
         {Object.keys(lineup).map((key) => (
           <ArtistSelectionTable key={key} day={titleCase(key)} artists={lineup[key]} />

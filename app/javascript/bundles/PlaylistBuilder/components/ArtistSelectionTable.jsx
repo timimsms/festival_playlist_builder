@@ -13,9 +13,9 @@ import Typography from '@material-ui/core/Typography';
 
 import SettingsIcon from '@material-ui/icons/SettingsInputAntenna';
 
-import ArtistSelectionSlider from './ArtistSelectionSlider.jsx';
+import ArtistSelectionSlider from './ArtistSelectionSlider';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -31,7 +31,7 @@ const styles = theme => ({
   },
   sliderCell: {
     width: '65%',
-  }
+  },
 });
 
 let id = 0;
@@ -46,11 +46,10 @@ class ArtistSelectionTable extends React.Component {
     this.state = {
       classes: props,
       day: props.day,
-      artists: props.artists,
       data: props.artists.map((artist) => (
         createData(artist)
       )),
-    }
+    };
   }
 
   render() {
@@ -72,7 +71,7 @@ class ArtistSelectionTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {artistData.map(row => (
+            {artistData.map((row) => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
                   <h3>{row.name}</h3>

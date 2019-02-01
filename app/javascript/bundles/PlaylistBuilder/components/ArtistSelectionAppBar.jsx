@@ -24,7 +24,7 @@ const styles = {
   },
   createButton: {
     color: 'yellow',
-  }
+  },
 };
 
 class ArtistSelectionAppBar extends React.Component {
@@ -34,6 +34,8 @@ class ArtistSelectionAppBar extends React.Component {
       classes: props,
       userName: props.userName,
       festivalName: props.festivalName,
+      createPlaylistAction: props.createPlaylistAction,
+      backButtonAction: props.backButtonAction,
     };
   }
 
@@ -43,14 +45,24 @@ class ArtistSelectionAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+              onClick={() => { this.state.backButtonAction(); }}
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               {this.state.festivalName}
             </Typography>
-            <Button className={classes.createButton} variant="outlined">
-              <CreatePlaylistIcon />&nbsp;
+            <Button
+              className={classes.createButton}
+              variant="outlined"
+              onClick={() => { this.state.createPlaylistAction(); }}
+            >
+              <CreatePlaylistIcon />
+&nbsp;
               Create Playlist
             </Button>
           </Toolbar>

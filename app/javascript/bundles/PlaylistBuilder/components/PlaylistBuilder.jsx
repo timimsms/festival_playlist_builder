@@ -46,6 +46,16 @@ class PlaylistBuilder extends Component {
     });
   }
 
+  clearCurrentPlaylist() {
+    this.setState({
+      currentlySelectedFestival: null,
+    });
+  }
+
+  submitBuildPlaylistRequest() {
+    console.log('test');
+  }
+
   // TODO: Clean-up this method a bit. - TW
   currentlySelectedFestivalIndex() {
     let result;
