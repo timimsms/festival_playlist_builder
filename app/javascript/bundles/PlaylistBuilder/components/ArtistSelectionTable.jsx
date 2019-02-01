@@ -143,7 +143,7 @@ const toolbarStyles = theme => ({
 });
 
 let ArtistSelectionTableToolbar = props => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes, day } = props;
 
   return (
     <Toolbar
@@ -158,7 +158,7 @@ let ArtistSelectionTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Nutrition
+            {day}
           </Typography>
         )}
       </div>
@@ -184,6 +184,7 @@ let ArtistSelectionTableToolbar = props => {
 
 ArtistSelectionTableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
+  day: PropTypes.string.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
 
@@ -203,28 +204,21 @@ const styles = theme => ({
 });
 
 class ArtistSelectionTable extends React.Component {
-  state = {
-    order: 'asc',
-    orderBy: 'calories',
-    selected: [],
-    data: [
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Donut', 452, 25.0, 51, 4.9),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-      createData('Honeycomb', 408, 3.2, 87, 6.5),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Jelly Bean', 375, 0.0, 94, 0.0),
-      createData('KitKat', 518, 26.0, 65, 7.0),
-      createData('Lollipop', 392, 0.2, 98, 0.0),
-      createData('Marshmallow', 318, 0, 81, 2.0),
-      createData('Nougat', 360, 19.0, 9, 37.0),
-      createData('Oreo', 437, 18.0, 63, 4.0),
-    ],
-    page: 0,
-    rowsPerPage: 5,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: 'asc',
+      orderBy: 'calories',
+      selected: [],
+      day: props.day,
+      artists: props.artists,
+      data: props.artists.map((artist) => (
+        createData(artist, 305, 3.7, 67, 4.3)
+      )),
+      page: 0,
+      rowsPerPage: 5,
+    };
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -283,7 +277,7 @@ class ArtistSelectionTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <ArtistSelectionTableToolbar numSelected={selected.length} />
+        <ArtistSelectionTableToolbar numSelected={selected.length} day={this.state.day}/>
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <ArtistSelectionTableHead
@@ -331,7 +325,7 @@ class ArtistSelectionTable extends React.Component {
           </Table>
         </div>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}

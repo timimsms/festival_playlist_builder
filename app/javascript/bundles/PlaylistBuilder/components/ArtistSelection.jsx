@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import ArtistSelectionAppBar from './ArtistSelectionAppBar';
 import ArtistSelectionTable from './ArtistSelectionTable';
 
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map((word) => (word.charAt(0).toUpperCase() + word.slice(1))).join(' ');
+}
+
 class ArtistSelection extends Component {
   constructor(props) {
     super(props);
@@ -24,23 +28,16 @@ class ArtistSelection extends Component {
   }
 
   render() {
-    var lineup = this.getCurrentLineupByDay();
+    const lineup = this.getCurrentLineupByDay();
 
     return (
       <div>
-        <ArtistSelectionAppBar userName={this.state.builder.getUserName()}
-                               festivalName={this.getCurrentPlaylistName()}/>
-        TODO: NEXT STEP - ADD ARTIST SELECTOR
-        <br />
-        <ArtistSelectionTable />
-        <br />
+        <ArtistSelectionAppBar
+          userName={this.state.builder.getUserName()}
+          festivalName={this.getCurrentPlaylistName()}
+        />
         {Object.keys(lineup).map((key) => (
-          <div key={key}>
-            <h1>{key}</h1>
-            {lineup[key].map((artist) => (
-              <small key={artist}>{artist}&nbsp;</small>
-            ))}
-          </div>
+          <ArtistSelectionTable key={key} day={titleCase(key)} artists={lineup[key]} />
         ))}
       </div>
     );
