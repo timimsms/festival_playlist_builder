@@ -40,6 +40,10 @@ function createData(name, value) {
   return { id, name, value };
 }
 
+// TODO: Next steps; need to investigate handling the data in a higher-order
+//       element or in the Redux store (original plan was to handle migration
+//       to redux as a follow-on project). Data needs to be used in
+//       ArtistSelection component.
 class ArtistSelectionTable extends React.Component {
   constructor(props) {
     super(props);

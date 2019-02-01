@@ -52,6 +52,8 @@ class PlaylistBuilder extends Component {
     });
   }
 
+  // TODO: This should post a request to a controller to build the playlist
+  //       for the current user given the selected artist preferences. - TW
   submitBuildPlaylistRequest() {
     console.log('test');
   }
