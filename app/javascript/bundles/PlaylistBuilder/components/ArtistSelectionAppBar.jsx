@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import MenuIcon from '@material-ui/icons/ArrowBackIos';
+import CreatePlaylistIcon from '@material-ui/icons/Loop';
 
 const styles = {
   root: {
@@ -21,6 +22,9 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  createButton: {
+    color: 'yellow',
+  }
 };
 
 class ArtistSelectionAppBar extends React.Component {
@@ -45,7 +49,10 @@ class ArtistSelectionAppBar extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               {this.state.festivalName}
             </Typography>
-            <Button color="inherit">{this.state.userName}</Button>
+            <Button className={classes.createButton} variant="outlined">
+              <CreatePlaylistIcon />&nbsp;
+              Create Playlist
+            </Button>
           </Toolbar>
         </AppBar>
       </div>

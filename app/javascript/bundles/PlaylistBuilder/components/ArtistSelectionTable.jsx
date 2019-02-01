@@ -11,20 +11,26 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@material-ui/icons/SettingsInputAntenna';
+
+import ArtistSelectionSlider from './ArtistSelectionSlider.jsx';
 
 const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
   },
   table: {
     maxWidth: '100%',
   },
   day: {
-    marginTop: '30px',
+    marginTop: 50,
+    paddingTop: 30,
     textAlign: 'center',
+    fontFamily: "'Montserrat Alternates', sans-serif",
+  },
+  sliderCell: {
+    width: '65%',
   }
 });
 
@@ -53,7 +59,7 @@ class ArtistSelectionTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <Typography className={classes.day} color="inherit" variant="h3">
+        <Typography className={classes.day} color="inherit" variant="h4">
           {this.state.day}
         </Typography>
         <Table className={classes.table}>
@@ -69,10 +75,10 @@ class ArtistSelectionTable extends React.Component {
             {artistData.map(row => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                  <h4>{row.name}</h4>
+                  <h3>{row.name}</h3>
                 </TableCell>
-                <TableCell align="right">
-                  TODO: SLIDER FOR SETTINGS
+                <TableCell className={classes.sliderCell} align="right">
+                  <ArtistSelectionSlider />
                 </TableCell>
               </TableRow>
             ))}
